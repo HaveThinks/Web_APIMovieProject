@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link href="css/user.css" rel="stylesheet" />
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/toolss.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                var token = localStorage.getItem("token");
+                if (token == null) {
+                    alert("你还没有登录，请先登录！");
+                    //保存场次编号方便登录后跳转回来
+                    localStorage.setItem("timeid", GetQueryString("id"));
+                    window.location.href = "login.html";
+                }
+                $("#layout").click(function () {
+                    window.location.href = "login.html";
+                    //    }
+                    //$.ajax({
+                    //    url: weburl + "api/Logout",
+                    //    method: "GET",
+                    //    headers: { "authorization": "basic " + token },
+                    //    success: function (data) {
+                    //        //alert("退出成功！");
+                    //        window.location.href = "login.html";
+                    //    }
+
+                    //})
+                })
+            })
+        </script>
+	</head >
+    <body>
+        <div class="wrap">
+            <div class="header">
+                <div class="left_icon" onclick="window.history.go(-1);">
+                    <img src="img/left.png" />
+                </div>
+                <p>我的</p>
+            </div>
+            <div class="main">
+                <div class="order">
+                    <a class="order" href="order.html">
+                         我的订单
+                    </a>
+		<div class="arrow"></div>
+                </div>
+                <div class="coupon">
+                    优惠券
+		<div class="arrow"></div>
+                </div>
+                <div class="card">
+                    影院会员卡
+		<div class="arrow"></div>
+                </div>
+                <div class="see">
+                    想看的电影
+		<div class="arrow"></div>
+                </div>
+                <div class="seen">
+                    看过的电影
+		<div class="arrow"></div>
+                </div>
+                <div class="exit">
+                    <input type="button" id="layout" name="" value="点击退出" />
+                </div>
+                <div class="tel">
+                    <img src="img/LOGO_gray.png" />
+                    <p>客服电话：027- 87229009</p>
+                </div>
+            </div>
+            <div class="m_footer">
+                <ul>
+                    <li><a href="movie.html"><img src="img/movie_icon2.png" /><p>电影</p></a></li>
+                    <li><a href="order.html"><img src="img/order.png" /><p>订单</p></a></li>
+                    <li><a href="user.html" class="cur"><img src="img/uder_icon.png" /><p>我的</p></a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html >

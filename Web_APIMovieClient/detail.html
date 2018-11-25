@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link href="css/detail.css" rel="stylesheet" />
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/toolss.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $.ajax({
+                    url: weburl+"/api/Movie/Info",
+                    data: { "MovieId": GetID()},
+                    method: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        //for (var i = 0; i < data.length; i++) {
+                            $(".wrap").append(
+                                "<div class=\"header\">" +
+                                "<div class=\"left_icon\" onclick=\"window.history.go(-1);\">" +
+                                "<img src=\"img/left.png\" />" +
+                                "</div>" +
+                                "<p>" + data.Name + "</p>" +
+                                "</div>" +
+                                "<div class=\"m_detail\">" +
+                                "<div class=\"movie_box\">" +
+                                "<div class=\"m_pic\">" +
+                                "<img src=\"../" + data.ImgUrl + "\"/>" +
+                                "<div class=\"m_play\">" +
+                                "</div>" +
+                                "</div>" +
+                                "<div class=\"m_content\">" +
+                                "<div class=\"m_name\">" + data.Name +
+                                "</div>" +
+                                "<div class=\"m_sore\">" +
+                                "<div id=\"star_con\" class=\"star-vote\">" +
+                                "<span id=\"add_star\" class=\"add-star\">"+"</span>" +
+                                "<span id=\"del_star\" class=\"del-star\">"+"</span>" +
+                                "</div>" +
+                                "<div class=\"m_score\">" +
+                                data.Rate +
+                                "</div>" +
+                                "</div>" +
+                                "<div class=\"m_type\">" +
+                                data.Type +
+                                "</div>" +
+                                "<div class=\"m_cast\">" +
+                                data.Actors +
+                                "</div>" +
+                                "<div class=\"m_time\">" +
+                                data.ReleaseTime +
+                                "</div>" +
+                                "</div>" +
+                                "</div>" +
+                                "<div class=\"detail_txt\">" +
+                                data.Intro +
+                                "</div>" +
+                                "</div>" +
+                                "<div class=\"detail_footer\">" +
+                                "<a href=\"cinema.html?id=" + data.MovieID+"\">立即购票</a>" +
+                                "</div>"
+
+                            )
+                        //}
+                        showStar(data.Rate);
+                    }
+                });
+               
+            })
+            //n表示后台获取的星数
+            function showStar(n) {
+                var con_wid = document.getElementById("star_con").offsetWidth;
+                var del_star = document.getElementById("del_star");
+                console.log(con_wid);
+
+                //透明星星移动的像素
+                var del_move = (n * con_wid) / 10;
+
+                del_star.style.backgroundPosition = -del_move + "px 0px";
+                del_star.style.left = del_move + "px";
+            }
+            function GetID() {
+                var id = window.location.search;
+                var idvalue = id.substring(4);
+                return idvalue;
+            }
+        </script>
+
+	</head>
+	<body >
+		<div class="wrap">
+			
+		</div>
+	</body>
+</html>

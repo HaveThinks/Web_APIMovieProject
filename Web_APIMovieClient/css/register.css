@@ -1,0 +1,18 @@
+﻿.header{width: 100%; height: 55px; background: #076fa2; position: fixed; text-align: center;z-index: 999; }
+.header p{line-height: 55px; font-size: 1.8em; color: #fff;display:inline-block;}
+.left_icon{position: absolute; top:15px}
+.left_icon img{width: 50%;}
+.main{position: absolute; top: 55px; width: 100%;}
+.r_box{background: #fff; height: 55px; margin-top: 10px;}
+.r_box input{border: none; font-size: 1.6em; color: #C8C8C8; line-height: 55px; padding-left: 20px;}
+.r_box input::-moz-placeholder{color: #C8C8C8;}
+.r_box input::-webkit-input-placeholder{color: #C8C8C8;}
+    		
+.r_btn,.r_chk{width: 90%; margin: 10px auto 0 auto; }
+.r_btn input{ background: #076fa2; height: 60px; width: 100%; font-size: 2em; color: #fff; text-align: center; border-radius: 5px;}
+.r_chk label{line-height: 55px; font-size: 1.2em;}
+.r_chk input{-webkit-appearance: none; width: 16px; height: 16px; border-radius: 3px;   background: #1296db; position: relative; top:3px; margin-right: 5px;}
+.r_chk input:checked{background: url(img/chk_bg.png) #fff; background-size: cover;}
+.r_mark{text-align: center; font-size: 1.2em; margin-top: 10px;}
+.login-page {float: right;margin-right: 10px;}
+.login-page a {color: #fff;text-decoration: none;font-size: 16px;line-height: 55px;}

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="css/register.css" rel="stylesheet" />
+    <script src="js/toolss.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#Register").click(function () {
+                if (!$("#agree").is(":checked")) {
+                    alert("注册用户，你必须同意协议")
+                    return;
+                }
+                if ($("#password").val() == $("#repassword").val()) {
+                    $.ajax({
+                        url: weburl+"/api/Register",
+                        method: "POST",
+                        data: { "UserName": $("#username").val(), "Password": $("#password").val() },
+                        success: function (data) {
+                            alert("注册成功！");
+                            window, location.href = "Login.html";
+                        },
+                        error: function (msg) {
+                            alert("用户注册失败，用户名已存在。")
+                        }
+                    });
+                }
+                else {
+                    alert("两次密码输出不一致，请重新输入");
+                    $("#password").val("");
+                    $("#repassword").val("");
+                }
+            })
+        });
+    </script>
+
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="left_icon" onclick="window.history.go(-1);">
+                <img src="img/left.png" />
+            </div>
+            <p>小莱电影</p>
+            <div class="login-page">
+                <a href="login.html">登录</a>
+            </div>
+        </div>
+        <div class="main">
+            <div class="r_box">
+                <input type="text" id="username" placeholder="请输入用户名" />
+            </div>
+            <div class="r_box">
+                <input type="password" id="password" placeholder="请输入密码" />
+            </div>
+            <div class="r_box">
+                <input type="password" id="repassword" placeholder="请确认密码" />
+            </div>
+            <div class="">
+                <label><input type="checkbox" id="agree" value="" checked="checked" />我已阅读并同意<span>《格莱科技用户协议》</span></label>
+            </div>
+            <div class="r_btn">
+                <input type="submit" id="Register" name="Register" value="点击注册" />
+            </div>
+            <div class="r_mark">
+                ? 格莱科技 客服电话：027- 87229009
+            </div>
+        </div>
+    </div>
+</body>
+</html>

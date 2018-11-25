@@ -1,0 +1,27 @@
+﻿.header{width: 100%; height: 55px; background: #076fa2; position: fixed; text-align: center; z-index: 999;}
+.header p{line-height: 55px; font-size: 1.8em; color: #fff;}
+.left_icon{position: absolute; top:15px}
+.left_icon img{width: 50%;}
+.main{position: absolute; top: 55px; width: 100%;}
+#header{position: absolute;z-index: 2;top: 55px;left: 0;width: 100%;height: 45px;line-height: 45px;background: #fff;border-bottom: 2px solid #dcdcdc;color: #076fa2;font-size: 1.5em; text-align: center;}
+#header span{color: #f1c100; font-size: 16px; margin-left: 3px;}
+#wrapper {position: absolute;z-index: 1;top: 110px;bottom: 48px;left: 0;width: 100%;}
+#scroller {position: absolute;z-index: 1;-webkit-tap-highlight-color: rgba(0,0,0,0);width: 100%;-webkit-transform: translateZ(0);-moz-transform: translateZ(0);-ms-transform: translateZ(0);-o-transform: translateZ(0);transform: translateZ(0);-webkit-touch-callout: none;-webkit-user-select: none;	-moz-user-select: none;	-ms-user-select: none;user-select: none;-webkit-text-size-adjust: none;-moz-text-size-adjust: none;-ms-text-size-adjust: none;-o-text-size-adjust: none;	text-size-adjust: none;}
+#scroller .cinema {width: 100%;text-align: left; border-top: 1px solid #d2d2d2;}
+#scroller .list_box{
+	padding: 0 10px;
+	height: 46px;
+	line-height: 46px;
+	border-bottom: 1px solid #ccc;
+	background-color: #fff;
+	font-size: 14px;
+	overflow: hidden;
+	position: relative;
+}
+.l_time{font-size: 1.4em;float: left;overflow-x: hidden;}
+.l_type{position: absolute; font-size: 14px; top: 5px; left: 90px; line-height: 1.3em !important;}
+.l_type p:nth-child(2){color: #AFAFAF;}
+.l_price{font-size: 1.4em;float: right;}
+.list_box .l_btn{float: right; margin-left: 20px; }
+.l_btn input{border:1px solid #076FA2; border-radius: 3px; padding: 5px; font-size: 1.2em; background: #fff; color: #076FA2; width: 80px; height: 30px;}
+	

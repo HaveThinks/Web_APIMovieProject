@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="css/movie.css" rel="stylesheet" />
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/toolss.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: weburl+"/api/Movie/New",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        $(".movie").append("<div class=\"movie_box\"><a href=\"detail.html?id=" + data[i].MovieID + "\">" +
+                            "<div class=\"m_pic\">" +
+                            "<img src=\"../" + data[i].ImgUrl + "\" />" +
+                            "</div>" +
+                            "<div class=\"m_content\">" +
+                            "<div class=\"m_name\">" +
+                            "<h3>" + data[i].Name + "</h3>" +
+                            "<h4><span>3D</span>IMAX</h4>" +
+                            "</div>" +
+                            "<div class=\"m_type\">" + data[i].Type + "</div >" +
+                            "<div class=\"m_cast\">主演:" + data[i].Actors + "</div>" +
+                            "</div>" +
+                            "<div class=\"m_btn\">" +
+                            "<p>" + data[i].Rate + "分</p>" +
+                            "<input type=\"button\" class=\"buy\" onclick=\"buy(" + data[i].MovieID + ");return false;\"value=\"购票\" />" +
+                            "</div></a>" +
+                            "</div>");
+                    }
+
+                }
+            });
+        });
+        function buy(id) { window.location.href = "cinema.html?id=" + id; }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="left_icon" onclick="window.history.go(-1);">
+                <img src="img/left.png" />
+            </div>
+            <p>小莱电影</p>
+        </div>
+        <div id="m_header">影片</div>
+        <div id="wrapper">
+            <div id="scroller">
+                <div class="movie">
+
+                </div>
+            </div>
+        </div>
+        <div class="m_footer">
+            <ul>
+                <li><a href="movie.html" class="cur"><img src="img/movie_icon.png" /><p>电影</p></a></li>
+                <li><a href="order.html"><img src="img/order.png" /><p>订单</p></a></li>
+                <li><a href="user.html"><img src="img/uder.png" /><p>我的</p></a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

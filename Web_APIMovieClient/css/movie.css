@@ -1,0 +1,34 @@
+﻿.header{width: 100%; height: 55px; background: #076fa2; position: fixed; text-align: center; z-index: 999;}
+.header p{line-height: 55px; font-size: 1.8em; color: #fff;}
+.left_icon{position: absolute; top:15px}
+.left_icon img{width: 50%;}
+.main{position: absolute; top: 55px; width: 100%;}
+#m_header{position: absolute;z-index: 2;top: 55px;left: 0;width: 100%;height: 45px;line-height: 45px;background: #fff;border-bottom: 2px solid #076FA2; color: #076fa2;font-size: 1.5em; text-align: center;}
+#wrapper {position: absolute;z-index: 1;top: 110px;bottom: 48px;left: 0;width: 100%;}		
+#scroller {position: absolute;padding-bottom:50px; z-index: 1;-webkit-tap-highlight-color: rgba(0,0,0,0);width: 100%;-webkit-transform: translateZ(0);-moz-transform: translateZ(0);-ms-transform: translateZ(0);-o-transform: translateZ(0);transform: translateZ(0);-webkit-touch-callout: none;-webkit-user-select: none;	-moz-user-select: none;	-ms-user-select: none;user-select: none;-webkit-text-size-adjust: none;-moz-text-size-adjust: none;-ms-text-size-adjust: none;-o-text-size-adjust: none;	text-size-adjust: none;}
+#scroller .movie {width: 96%; margin: 0 auto;}
+#scroller .movie_box {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+}
+.movie .m_pic{float: left; width: 30%; margin-right: 10px;}
+.movie .m_pic img{width: 100%;}
+.movie .m_content{float: left; margin-top: 10px;}
+.movie .m_name{overflow: hidden; margin-bottom: 8px;}
+.movie .m_name h3{float: left; color: #076FA2; font-size: 1.4em; margin-right: 5px;width: 120px;}
+.movie .m_name h4{float: left; border: 1px solid #076FA2; border-radius: 3px; font-size: 1em; color: #1296DB; padding-right: 3px;}
+.movie .m_name h4 span{background: #076FA2; color: #fff; font-size: 1em; padding: 0 3px; margin-right: 3px;}
+.movie .m_type{font-size: 1.2em; color: #4d4d4d; margin-bottom: 8px;}
+.movie .m_cast{font-size: 1.2em; color: #4d4d4d; margin-bottom:8px;width: 140px;}
+.movie .m_amount{font-size: 1.4em; color: #9b9b9b; margin-bottom:8px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;width:115px;}
+.movie .m_btn{position: absolute;right: 2%;top: 20%;}
+.movie .m_btn p{color: #f9bd07; font-size: 1.4em; font-weight: bold;margin-bottom: 5px;}
+.movie .m_btn input{ background: #076FA2; border-radius: 3px; color: #fff; padding: 3px 12px; font-size: 1.4em;}
+.m_footer {position: fixed;z-index: 2;bottom: 0;width: 100%;height: 48px;background: #1f6a96;}
+.m_footer li{float: left; width: 33.33%; text-align: center; margin-top: 2%;}
+.m_footer li img{width: 15%;}
+.m_footer li a{color: #fff;}
+.m_footer li .cur{color: #ffc000;}

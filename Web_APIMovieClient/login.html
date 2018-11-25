@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="css/login.css" rel="stylesheet" />
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/toolsss.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#login").click(function () {
+                $.ajax({
+                    url: weburl+"/api/Logion",
+                    method: "POST",
+                    data: { "UserName": $("#username").val(), "Password": $("#password").val() },
+                    success: function (data) {
+                        localStorage.setItem("token", data);
+                        //跳转过来的场次编号
+                        var timeid = localStorage.getItem("timeid");
+                        if (timeid) {
+                            window.location.href = "seat.html?id=" + timeid;
+                        }
+                        else {
+                            window.location.href = "movie.html";
+                        }
+                        window.location.href = "movie.html";
+                    },
+                    error: function (msg) {
+                        alert("用户登录失败，用户名或密码错误。" + msg.responseText)
+                    }
+
+                });
+            })
+        });
+    </script>
+</head >
+    <body>
+        <div class="wrap">
+            <div class="logo">
+                <img src="img/LOGO.png" />
+            </div>
+            <div class="username">
+                <input type="text" id="username" value="" placeholder="请输入用户名" />
+            </div>
+            <div class="password">
+                <input type="password" id="password" name="" placeholder="请输入密码" />
+            </div>
+            <div class="btn">
+                <input type="submit" id="login" name="" value="点击登录" />
+            </div>
+            <div class="reg-page">
+                <a href="register.html">点击注册</a>
+            </div>
+        </div>
+    </body>
+</html >

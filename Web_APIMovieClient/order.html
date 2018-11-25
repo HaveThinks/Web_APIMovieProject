@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link href="css/order.css" rel="stylesheet" />
+    <!--<script src="Scripts/jquery-1.10.2.min.js"></script>-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/toolss.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //判断token
+            var token = localStorage.getItem("token");
+            if (token == null) {
+                alert("你还没有登录，请先登录！");
+                //保存场次编号方便登录后跳转回来
+                localStorage.setItem("timeid", GetQueryString("id"));
+                window.location.href = "login.html";
+            }
+            $.ajax({
+                url: weburl+"api/Orders",
+                method: "GET",
+                dataType: "json",
+                headers: { "authorization": "basic " + token },
+                //data:localStorage.getItem("token"),
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        $(".movie").append("<div class=\"order_box\">" +
+                            " <div class=\"order_name\">" +
+                            "<div class=\"order_pic\">" +
+                            "<img src=\"../" + data[i].ImgUrl + "\"/>" +
+                            "</div>" +
+                            "<div class=\"order_content\">" +
+                            "<h3>" + data[i].MovieName + "<span>" + data[i].Total + "</span></h3>" +
+                            "<p>" + data[i].ReserveTime + "</p>" +
+                            "<p>" + data[i].Seat + "</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class=\"order_type\">" +
+                            "<div class=\"order_total\">总价：" + data[i].Price + "</div>" +
+                            "<div class=\"order_finish\">" + data[i].Status + "</div>" +
+                            "</div>" +
+                            "</div>"
+                        );
+                    };
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="left_icon" onclick="window.history.go(-1);">
+                <img src="img/left.png" />
+            </div>
+            <p>我的订单</p>
+        </div>
+        <div id="wrapper">
+            <div id="scroller">
+                <div class="movie">
+
+                </div>
+            </div>
+        </div>
+        <div class="m_footer">
+            <ul>
+                <li><a href="movie.html"><img src="img/movie_icon2.png" /><p>电影</p></a></li>
+                <li><a href="order.html" class="cur"><img src="img/order_icon.png" /><p>订单</p></a></li>
+                <li><a href="user.html"><img src="img/uder.png" /><p>我的</p></a></li>
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

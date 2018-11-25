@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link href="css/seat.css" rel="stylesheet" />
+        <script src="js/toolss.js"></script>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript">
+$(function () {
+    //判断token
+    var token = localStorage.getItem("token");
+    if (token == null) {
+        alert("你还没有登录，请先登录后再购买！");
+        //保存场次编号方便登录后跳转回来
+        localStorage.setItem("timeid", GetQueryString("id"));
+        window.location.href = "login.html";
+    }
+    //清除localStorage缓存场次编号
+    localStorage.removeItem("timeid");
+
+    //获取电影基本信息
+    //获取电影基本信息
+    $.ajax({
+        url: weburl + "api/Movie/Info?MovieId=" + GetQueryString("mid"),
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $("#name").html(data.Name);
+        }
+    })
+
+    var bb = GetQueryString("id");
+
+    var Price = 0;
+    //获取场次详情信息
+    $.ajax({
+        url: weburl + "api/Movie/ShowsDetail?TimeID=" + GetQueryString("id"),
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            $("#info").text("今天" + (new Date().getMonth() + 1) + "月" + (new Date().getDate()) + "日 " + data.Time.substring(0, 5) + " " + data.RoomType);
+            $("#room").text(data.Room + "银幕");
+            Price = data.Price;
+        }
+    })
+
+    for (var i = 0; i < 100; i++) {
+        $(".seat_array").append("<li><a href=\"#\"></a></li>");
+    }
+
+    var cc = GetQueryString("id");
+
+    //获取电影选座信息
+    $.ajax({
+        url: weburl+"api/Movie/Seat",
+        data: { "TimeID": GetQueryString("id") },
+        method: "GET",
+        headers: { "authorization": "basic " + token },
+        dataType: "json",
+        success: function (data) {
+            for (var i = 0; i < data.length; i++) {
+                var index = (data[i].Row - 1) * 10 + data[i].Col - 1;
+                $(".seat_array li").eq(index).addClass("sell");
+            }
+        },error: function (msg)
+        {
+
+        }
+    })
+
+    //选中座位
+    $(".seat_array li").click(function(){
+                    
+        if (!$(this).attr("class"))
+        {
+            if ($(".seat_array li[class=sed]").length >= 4)
+            {
+                alert("最多预定4个位置");
+                return;
+            }
+            //标注选中位置
+            $(this).addClass("sed");
+
+            var index = $(".seat_array li").index(this) + 1;
+            SelectSeat(index)
+
+            ComputePrice();
+        }
+    })
+    //保存选中位置数组
+    var arr = new Array();
+
+    //显示选中的座位
+    function SelectSeat(index)
+    {
+        var row = Math.floor(index / 10) + 1;
+        var col = index % 10;
+        //保存选中位置到数组
+        arr.push({ "Row": row, "Col": col });
+        //显示选中位置
+        $("<div class=\"seat_item\" title=" + (index - 1) + ">" +
+            "<div class=\"seat_num\"><span class=\"row\">" + row + "</span>排<span class=\"col\">" + col + "</span>座</div>" +
+            "<div class=\"seat_price\">￥" + Price + "</div>" +
+            "<div class=\"seat_icon\"></div>" +
+            "</div>").appendTo(".seat_list").click(function () {
+                //清除数组中的位置信息
+                var index = $(".seat_item").index(this);
+                arr.splice(index,1);
+                //取消选中
+                $(".seat_array li").eq($(this).attr("title")).attr("class", "");
+                $(this).remove();
+                ComputePrice();
+            })
+    }
+    //计算价格
+    function ComputePrice()
+    {
+        var count = $(".seat_item").length;
+        if(count>0)
+            $(".detail_footer a").text("￥" + count * Price + " 确认选座");
+        else
+            $(".detail_footer a").text("确认选座");
+    }
+    //下订单
+    //下订单
+    $(".detail_footer a").click(function () {
+        var data = { "TimeID": GetQueryString("id"), "SeatList": arr };
+        $.ajax({
+            url: weburl +"api/Orders",
+            method: "POST",
+            headers: { "content-type": "application/x-www-form-urlencoded", "authorization": "basic " + token },
+            data: data,
+            success: function (data) {
+                alert("订单已确认！");
+                window.location.href = "order.html";
+            }, error: function () {
+                alert("下单失败！");
+            }
+        })
+    })
+})
+        </script>
+
+	
+		
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="header">
+                <div class="left_icon" onclick="window.history.go(-1);">
+                    <img src="img/left.png" />
+                </div>
+				<p>影院</p>				
+			</div>
+			<div class="main">
+				<div class="today_movie">
+					<h3 id="name"></h3>
+					<p id="info"></p>
+				</div>
+				<div class="seat">
+					<h2 id="room"></h2>
+					<ul class="seat_array">
+						
+					</ul>
+					<div class="seat_type">
+						<ul>
+							<li>可选</li>
+							<li>已选</li>
+							<li>已售</li>
+						</ul>
+					</div>
+					<div class="seat_list">
+						<h3>已选座位</h3>
+						<div class="seat_lists">
+							
+					
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="detail_footer">
+				<a href="javascript:void(0)">确认选座</a>
+			</div>
+		</div>		
+	</body>
+</html>

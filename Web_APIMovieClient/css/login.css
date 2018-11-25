@@ -1,0 +1,12 @@
+﻿.logo{text-align: center;}
+.logo img{max-width: 30%; margin: 28% auto 10px auto;}
+.username,.password{border-bottom: 1px solid #c8c8c8; width: 90%; margin: 20px auto; text-align: center; padding-bottom: 20px;}
+.username input,.password input{border: none; font-size: 1.8em; color: #C8C8C8; text-align: center; }
+.username input::-moz-placeholder{color: #C8C8C8;}
+.username input::-webkit-input-placeholder{color: #C8C8C8;}
+.password input::-moz-placeholder{color: #C8C8C8;}
+.password input::-webkit-input-placeholder{color: #C8C8C8;}
+.btn{width: 90%; margin: 0 auto;}
+.btn input{ background: #076fa2; height: 60px; width: 100%; font-size: 2em; color: #fff; text-align: center; border-radius: 5px;}
+.reg-page{text-align: right;width: 90%; margin: 0 auto;margin-top: 5px;}
+.reg-page a{text-decoration: none;color: #076FA2;font-size: 12px;}
